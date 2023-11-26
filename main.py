@@ -1,7 +1,7 @@
-from pydantic import BaseModel
 from flask import Flask, request, jsonify
-from translation import translate
-from interfaces import TranslationRequest
+from detect_language import detect
+from translation import detect_and_translate, translate
+from interfaces import DetectAndTranslate, TranslationRequest, DetectLanguageRequest
 from yb_transcription import yb_transcript
 
 app = Flask(__name__)
@@ -18,7 +18,7 @@ def transcription():
         return {"error": str(e)}, 400
 
     result = yb_transcript(request_data.url)
-    return result
+    return result, 200
 
 @app.route('/translation', methods=['POST'])
 def translation():
@@ -28,7 +28,27 @@ def translation():
         return {"error": str(e)}, 400
 
     result = translate(request_data.text, request_data.source, request_data.target)
-    return result
+    return result, 200
 
+@app.route('/detect_language', methods=['POST'])
+def detect_language():
+    try:
+        request_data = DetectLanguageRequest(**request.json)
+    except ValueError as e:
+        return {"error": str(e)}, 400
+    
+    result = detect(request_data.text)
+    return result, 200
+
+@app.route('/detect_and_translate', methods=['POST'])
+def translate_with_detect():
+    try:
+        request_data = DetectAndTranslate(**request.json)
+    except ValueError as e:
+        return {"error": str(e)}, 400
+ 
+    result = detect_and_translate(request_data.text, request_data.target)
+    return result, 200
+    
 if __name__ == '__main__':
     app.run(debug=True)

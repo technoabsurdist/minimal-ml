@@ -7,3 +7,11 @@ class TranslationRequest(BaseModel):
 
 class TranscriptionRequest(BaseModel):
     url: str
+
+class DetectLanguageRequest(BaseModel):
+    text: str
+
+class DetectAndTranslate(BaseModel):
+    text: str
+    target: str
+
