@@ -21,3 +21,6 @@ class TextToSpeechRequest(BaseModel):
 class TranslateToSpeechRequest(BaseModel):
     text: str
     target: str
+
+class YoutubeDownloadRequest(BaseModel):
+    url: str

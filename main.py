@@ -4,7 +4,7 @@ from text_to_speech import convert_text_to_speech
 from translate_and_talk import translate_and_talk
 from translation import detect_and_translate, translate
 import interfaces
-from yb_transcription import yb_transcript
+from yb import yb_download, yb_transcript
 
 app = Flask(__name__)
 
@@ -72,8 +72,15 @@ def translate_and_speech():
     result = translate_and_talk(request_data.text, request_data.target)
     return result, 200
 
+@app.route('/youtube_download_mp4', methods=['POST'])
+def youtube_download_mp4():
+    try:
+        request_data = interfaces.YoutubeDownloadRequest(**request.json)
+    except ValueError as e:
+        return {"error": str(e)}, 400
 
-
+    result = yb_download(request_data.url)
+    return result, 200
 
 if __name__ == '__main__':
     app.run(debug=True)
