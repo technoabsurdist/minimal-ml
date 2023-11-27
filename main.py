@@ -1,9 +1,8 @@
 import argparse
-from detect_language import detect
-from text_to_speech import convert_text_to_speech
-from translate_and_talk import translate_and_talk
-from translation import detect_and_translate, translate
-import interfaces
+from audio import enhance_audio
+from chat import chat
+from text_to_speech import convert_text_to_speech, translate_and_talk
+from language import detect_and_translate, translate, detect
 from yb import yb_download, yb_transcript
 
 def main():
@@ -11,6 +10,10 @@ def main():
 
     # Subparsers for each functionality
     subparsers = parser.add_subparsers(dest='command')
+
+    # Chat
+    chat_parser = subparsers.add_parser('chat', help='Chat with GPT-4')
+    chat_parser.add_argument('input', type=str, help='What you want to say to the chat model')
 
     # Transcription
     transcription_parser = subparsers.add_parser('transcription', help='Transcribe YouTube video')
@@ -44,9 +47,17 @@ def main():
     youtube_download_mp4_parser = subparsers.add_parser('youtube_download_mp4', help='Download YouTube video as MP4')
     youtube_download_mp4_parser.add_argument('url', type=str, help='URL of the YouTube video to download')
 
+    # Audio Enhancement
+    audio_enhancement = subparsers.add_parser('audio_enhancement', help='Remove background noise from audio and upsample to 48kHz.')
+    audio_enhancement.add_argument('audio_url', type=str, help="Publicly available URL pointing to audio, in mp3 or wav format.")
+    audio_enhancement.add_argument('enhance_speed_boost', type=bool, help="Make the enhancement run faster.")
+    audio_enhancement.add_argument('enhancement_steps', type=bool, default=50, help="Choose the number of steps for enhancement")
     args = parser.parse_args()
 
-    if args.command == 'transcription':
+    if args.command == 'chat':
+        result = chat(args.input)
+        print(result)
+    elif args.command == 'transcription':
         result = yb_transcript(args.url)
         print(result)
     elif args.command == 'translation':
@@ -67,6 +78,8 @@ def main():
     elif args.command == 'youtube_download_mp4':
         result = yb_download(args.url)
         print(result)
+    elif args.command == 'audio_enhancement':
+        result = enhance_audio(args.audio_url, args.enhance_speed_boost, args.enhancement_steps)
     else:
         parser.print_help()
 

@@ -1,5 +1,4 @@
 import sieve
-from detect_language import detect 
 from variables import language_codes, language_mapping
 
 def translate(original_text, source, target):
@@ -14,4 +13,9 @@ def detect_and_translate(original_text, target):
     source_detected = language_mapping[result_detected['language_code']]
 
     output = translate(original_text, source_detected, target) 
+    return output
+
+def detect(text):
+    langid = sieve.function.get("sieve/langid")
+    output = langid.run(text)
     return output

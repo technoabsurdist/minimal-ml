@@ -11,6 +11,7 @@ CLI tool that provides some useful and common interactions with state-of-the-art
 - **Translate and Talk**: Translates text from one language to another and then converts the translated text to speech.
 - **Youtube Video Download (MP4)**: Downloads a Youtube video in MP4 format given its URL.
 - **Detect Language and Translate**: Detects the language of the text and translates it to a specified target language.
+- **Audio Enhancement**: Enhances the quality of an mp3 or wav file. 
 
 ## Setup
 
@@ -31,5 +32,6 @@ The CLI provides the following commands:
 - `text_to_speech`: Command for converting text to speech. Requires text argument.
 - `translate_and_talk`: Command for translating and converting text to speech. Requires text and target language arguments.
 - `youtube_download_mp4`: Command for downloading Youtube videos in MP4 format. Requires a URL argument.
+- `audio_enhancement`: Command for enhancing the quality of an mp3 or wav file. 
 
 Each command can be used by running `python main.py [command]` followed by the necessary arguments. For specific details on each command and its required arguments, use `python main.py [command] -h`.
