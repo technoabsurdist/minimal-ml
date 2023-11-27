@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+import argparse
 from detect_language import detect
 from text_to_speech import convert_text_to_speech
 from translate_and_talk import translate_and_talk
@@ -6,81 +6,69 @@ from translation import detect_and_translate, translate
 import interfaces
 from yb import yb_download, yb_transcript
 
-app = Flask(__name__)
+def main():
+    parser = argparse.ArgumentParser(description="Language processing and YouTube utilities CLI")
 
-@app.route('/')
-def home():
-    return "Hello, World!"
+    # Subparsers for each functionality
+    subparsers = parser.add_subparsers(dest='command')
 
-@app.route('/transcription', methods=['POST'])
-def transcription():
-    try:
-        request_data = interfaces.TranslationRequest(**request.json)
-    except ValueError as e:
-        return {"error": str(e)}, 400
+    # Transcription
+    transcription_parser = subparsers.add_parser('transcription', help='Transcribe YouTube video')
+    transcription_parser.add_argument('url', type=str, help='URL of the YouTube video')
 
-    result = yb_transcript(request_data.url)
-    return result, 200
+    # Translation
+    translation_parser = subparsers.add_parser('translation', help='Translate text from one language to another')
+    translation_parser.add_argument('text', type=str, help='Text to translate')
+    translation_parser.add_argument('source', type=str, help='Source language')
+    translation_parser.add_argument('target', type=str, help='Target language')
 
-@app.route('/translation', methods=['POST'])
-def translation():
-    try:
-        request_data = interfaces.TranslationRequest(**request.json)
-    except ValueError as e:
-        return {"error": str(e)}, 400
+    # Detect Language
+    detect_language_parser = subparsers.add_parser('detect_language', help='Detect language of the given text')
+    detect_language_parser.add_argument('text', type=str, help='Text to detect language')
 
-    result = translate(request_data.text, request_data.source, request_data.target)
-    return result, 200
+    # Detect and Translate
+    detect_and_translate_parser = subparsers.add_parser('detect_and_translate', help='Detect language and translate text')
+    detect_and_translate_parser.add_argument('text', type=str, help='Text to detect and translate')
+    detect_and_translate_parser.add_argument('target', type=str, help='Target language for translation')
 
-@app.route('/detect_language', methods=['POST'])
-def detect_language():
-    try:
-        request_data = interfaces.DetectLanguageRequest(**request.json)
-    except ValueError as e:
-        return {"error": str(e)}, 400
-    
-    result = detect(request_data.text)
-    return result, 200
+    # Text to Speech
+    text_to_speech_parser = subparsers.add_parser('text_to_speech', help='Convert text to speech')
+    text_to_speech_parser.add_argument('text', type=str, help='Text to convert to speech')
 
-@app.route('/detect_and_translate', methods=['POST'])
-def translate_with_detect():
-    try:
-        request_data = interfaces.DetectAndTranslateRequest(**request.json)
-    except ValueError as e:
-        return {"error": str(e)}, 400
- 
-    result = detect_and_translate(request_data.text, request_data.target)
-    return result, 200
-    
-@app.route('/text_to_speech', methods=['POST'])
-def text_to_speech():
-    try:
-        request_data = interfaces.TextToSpeechRequest(**request.json)
-    except ValueError as e:
-        return {"error": str(e)}, 400
+    # Translate and Talk
+    translate_and_talk_parser = subparsers.add_parser('translate_and_talk', help='Translate text and convert to speech')
+    translate_and_talk_parser.add_argument('text', type=str, help='Text to translate and convert to speech')
+    translate_and_talk_parser.add_argument('target', type=str, help='Target language for translation')
 
-    result = convert_text_to_speech(request_data.text)
-    return result, 200
+    # YouTube Download MP4
+    youtube_download_mp4_parser = subparsers.add_parser('youtube_download_mp4', help='Download YouTube video as MP4')
+    youtube_download_mp4_parser.add_argument('url', type=str, help='URL of the YouTube video to download')
 
-@app.route('/translate_and_talk', methods=['POST'])
-def translate_and_speech():
-    try:
-        request_data = interfaces.TranslateToSpeechRequest(**request.json)
-    except ValueError as e:
-        return {"error": str(e)}, 400
+    args = parser.parse_args()
 
-    result = translate_and_talk(request_data.text, request_data.target)
-    return result, 200
-
-@app.route('/youtube_download_mp4', methods=['POST'])
-def youtube_download_mp4():
-    try:
-        request_data = interfaces.YoutubeDownloadRequest(**request.json)
-    except ValueError as e:
-        return {"error": str(e)}, 400
-
-    result = yb_download(request_data.url)
-    return result, 200
+    if args.command == 'transcription':
+        result = yb_transcript(args.url)
+        print(result)
+    elif args.command == 'translation':
+        result = translate(args.text, args.source, args.target)
+        print(result)
+    elif args.command == 'detect_language':
+        result = detect(args.text)
+        print(result)
+    elif args.command == 'detect_and_translate':
+        result = detect_and_translate(args.text, args.target)
+        print(result)
+    elif args.command == 'text_to_speech':
+        result = convert_text_to_speech(args.text)
+        print(result)
+    elif args.command == 'translate_and_talk':
+        result = translate_and_talk(args.text, args.target)
+        print(result)
+    elif args.command == 'youtube_download_mp4':
+        result = yb_download(args.url)
+        print(result)
+    else:
+        parser.print_help()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    main()

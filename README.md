@@ -1,34 +1,35 @@
-# Common ML Usecases API 
+# Common ML Usecases CLI
 
-API that provides some useful and common interactions with state-of-the-art ML models (e.g., `chat-gpt4`, `youtube_transcription`, )
-using Sieve, Langchain and more. 
+CLI tool that provides some useful and common interactions with state-of-the-art ML models (e.g., `chat-gpt4`, `youtube_transcription`,) using Sieve, Langchain, and more.
 
 ## Features
 
-- **Translation (sieve/seamless_text2text)**: Translates text from a source language to a target language. <br />
-- **Youtube Link Transcription (langchain/youtube_transcripts)**: Transcribes audio from a given URL. <br />
-- **Detect Language**: Identifies the language of the given text. <br />
-- **Text to Speech**: Converts text into spoken words. <br />
-- **Translate and Talk**: Translates text from one language to another and then converts the translated text to speech. <br />
-- **Youtube Video Download (MP4)**: Downloads a Youtube video in MP4 format given its URL. <br />
-- **Detect Language and Translate**: Detects the language of the text and translates it to a specified target language. <br />
+- **Translation (sieve/seamless_text2text)**: Translates text from a source language to a target language.
+- **Youtube Link Transcription (langchain/youtube_transcripts)**: Transcribes audio from a given URL.
+- **Detect Language**: Identifies the language of the given text.
+- **Text to Speech**: Converts text into spoken words.
+- **Translate and Talk**: Translates text from one language to another and then converts the translated text to speech.
+- **Youtube Video Download (MP4)**: Downloads a Youtube video in MP4 format given its URL.
+- **Detect Language and Translate**: Detects the language of the text and translates it to a specified target language.
 
 ## Setup
 
-To set up the server, follow these steps:
+To set up the tool, follow these steps:
 
-1. **Clone the Repository**: Clone this repository to your local machine. <br />
-2. **Install Dependencies**: Install the required Python packages using: `pip install -r requirements.txt` <br />
-3. **Run server**: Run server with `python main.py` <br />
+1. **Clone the Repository**: Clone this repository to your local machine.
+2. **Install Dependencies**: Install the required Python packages using: `pip install -r requirements.txt`
+3. **Run the CLI**: Use the CLI with `python main.py [command]`. For help on commands, run `python main.py -h`.
 
-## Endpoints
+## Usage
 
-The API provides the following endpoints:
+The CLI provides the following commands:
 
-- `/transcription`: POST method for transcribing Youtube videos. <br />
-- `/translation`: POST method for translating text. <br />
-- `/detect_language`: POST method for detecting the language of text. <br />
-- `/detect_and_translate`: POST method for detecting language and then translating text. <br />
-- `/text_to_speech`: POST method for converting text to speech. <br />
-- `/translate_and_talk`: POST method for translating and converting text to speech. <br />
-- `/youtube_download_mp4`: POST method for downloading Youtube videos in MP4 format. <br />
+- `transcription`: Command for transcribing Youtube videos. Requires a URL argument.
+- `translation`: Command for translating text. Requires text, source language, and target language arguments.
+- `detect_language`: Command for detecting the language of text. Requires text argument.
+- `detect_and_translate`: Command for detecting language and then translating text. Requires text and target language arguments.
+- `text_to_speech`: Command for converting text to speech. Requires text argument.
+- `translate_and_talk`: Command for translating and converting text to speech. Requires text and target language arguments.
+- `youtube_download_mp4`: Command for downloading Youtube videos in MP4 format. Requires a URL argument.
+
+Each command can be used by running `python main.py [command]` followed by the necessary arguments. For specific details on each command and its required arguments, use `python main.py [command] -h`.
