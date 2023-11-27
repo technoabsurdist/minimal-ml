@@ -11,7 +11,10 @@ class TranscriptionRequest(BaseModel):
 class DetectLanguageRequest(BaseModel):
     text: str
 
-class DetectAndTranslate(BaseModel):
+class DetectAndTranslateRequest(BaseModel):
     text: str
     target: str
+
+class TextToSpeechRequest(BaseModel):
+    text: str
 
