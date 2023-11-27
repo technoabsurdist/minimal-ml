@@ -80,6 +80,7 @@ def main():
         print(result)
     elif args.command == 'audio_enhancement':
         result = enhance_audio(args.audio_url, args.enhance_speed_boost, args.enhancement_steps)
+        print(result)
     else:
         parser.print_help()
 
