@@ -8,5 +8,9 @@ def enhance_audio(audio_url, speed_bost, steps):
     enhancement_steps = steps
 
     audio_enhancement = sieve.function.get("sieve/audio_enhancement")
-    output = audio_enhancement.run(audio, filter_type, enhance_speed_boost, enhancement_steps)
-    return output
+    return audio_enhancement.run(
+        audio, 
+        filter_type, 
+        enhance_speed_boost, 
+        enhancement_steps
+    )
