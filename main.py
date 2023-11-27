@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from detect_language import detect
 from text_to_speech import convert_text_to_speech
+from translate_and_talk import translate_and_talk
 from translation import detect_and_translate, translate
 import interfaces
 from yb_transcription import yb_transcript
@@ -60,6 +61,18 @@ def text_to_speech():
 
     result = convert_text_to_speech(request_data.text)
     return result, 200
+
+@app.route('/translate_and_talk', methods=['POST'])
+def translate_and_speech():
+    try:
+        request_data = interfaces.TranslateToSpeechRequest(**request.json)
+    except ValueError as e:
+        return {"error": str(e)}, 400
+
+    result = translate_and_talk(request_data.text, request_data.target)
+    return result, 200
+
+
 
 
 if __name__ == '__main__':

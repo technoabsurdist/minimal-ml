@@ -18,3 +18,6 @@ class DetectAndTranslateRequest(BaseModel):
 class TextToSpeechRequest(BaseModel):
     text: str
 
+class TranslateToSpeechRequest(BaseModel):
+    text: str
+    target: str
