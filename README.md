@@ -1,6 +1,16 @@
-# Common ML Usecases CLI
 
-CLI tool that provides some useful and common interactions with state-of-the-art ML models (e.g., `chat-gpt4`, `youtube_transcription`,) using Sieve, Langchain, and more.
+<div align="center"> 
+    <h1>Common ML Functionalities API</h1>
+    <img src="./cover-image.png" height="200" width="200">
+    <h4>
+    Python package which provides useful and common interactions with ML functionalities <br /> such as detecting language, chatbots, 
+    link transcriptions, audio enhancements, and much more.  
+    </h4>
+
+</div>
+
+<br />
+<br />
 
 ## Features
 
