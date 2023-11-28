@@ -24,26 +24,43 @@
 - **Audio Enhancement (sieve)**: Enhances the quality of an mp3 or wav file. 
 - **Visual question answering (sieve/llava-vl-13b)**: Visual question answering with GPT-4 level capabilities.
 
+
+<br />
+
 ## Setup
 
-To set up the tool, follow these steps:
+To set up the package, follow these steps:
 
-1. **Clone the Repository**: Clone this repository to your local machine.
-2. **Install Dependencies**: Install the required Python packages using: `pip install -r requirements.txt`
-3. **Run the CLI**: Use the CLI with `python main.py [command]`. For help on commands, run `python main.py -h`.
+1. **Install the Package**: Install this package using pip:
+pip install ml_api
+
+2. **Import in Your Project**: Import the required functionalities in your Python project:
+```python
+from ml_api.translation import translate
+from ml_api.text_to_speech import convert_text_to_speech
+# ... other imports as needed
+```
+
+<br />
 
 ## Usage
 
-The CLI provides the following commands:
+The package offers a range of functionalities that can be easily integrated into Python projects. Here are some of the features and how to use them:
 
-- `transcription`: Command for transcribing Youtube videos. Requires a URL argument.
-- `translation`: Command for translating text. Requires text, source language, and target language arguments.
-- `detect_language`: Command for detecting the language of text. Requires text argument.
-- `detect_and_translate`: Command for detecting language and then translating text. Requires text and target language arguments.
-- `text_to_speech`: Command for converting text to speech. Requires text argument.
-- `translate_and_talk`: Command for translating and converting text to speech. Requires text and target language arguments.
-- `youtube_download_mp4`: Command for downloading Youtube videos in MP4 format. Requires a URL argument.
-- `audio_enhancement`: Command for enhancing the quality of an mp3 or wav file. 
-- `visual question answer`: Command for visual question answering with GPT-4 level capabilities.
+**Translation**: Use `translate(original_text, source_language, target_language)` to translate text. <br />
+**Youtube Link Transcription**: Use `yb_transcript(url)` to get transcriptions of YouTube videos. <br />
+**Detect Language**: Use `detect(text)` to identify the language of a given text. <br />
+**Text to Speech**: Use `convert_text_to_speech(text)` to convert text into speech. <br />
+**Translate and Talk**: Use `translate_and_talk(text, target_language)` to translate and convert text to speech. <br />
+**Youtube Video Download**: Use `yb_download(url)` to download YouTube videos. <br />
+**Detect Language and Translate**: Combine detect and translate for detecting and translating text. <br />
+**Audio Enhancement**: Use `enhance_audio(audio_url, speed_boost, steps)` for audio enhancement. <br />
+**Visual question answering**: Use `visual_question_answering(image_url, prompt)` for visual Q&A. <br /> 
 
-Each command can be used by running `python main.py [command]` followed by the necessary arguments. For specific details on each command and its required arguments, use `python main.py [command] -h`.
+Each function can be directly used in your Python code after importing the respective module from the ml_api package. <br />
+
+<br />
+
+## Contributing!
+Please consider contributing to this young and humble project! 
+Email any questions at andere.emi@gmail.com
