@@ -1,7 +1,7 @@
 import sieve
 import shutil
 from text_to_speech import convert_text_to_speech
-from language import detect_and_translate
+from ..language import detect_and_translate
 
 def convert_text_to_speech(text):
     voice_id = "21m00Tcm4TlvDq8ikWAM"

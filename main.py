@@ -1,6 +1,6 @@
 import argparse
-from audio import enhance_audio
-from chat import chat
+from audio.audio import enhance_audio
+from chat.chat import chat
 from text_to_speech import convert_text_to_speech, translate_and_talk
 from language import detect_and_translate, translate, detect
 from yb import yb_download, yb_transcript
