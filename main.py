@@ -52,6 +52,12 @@ def main():
     audio_enhancement.add_argument('audio_url', type=str, help="Publicly available URL pointing to audio, in mp3 or wav format.")
     audio_enhancement.add_argument('enhance_speed_boost', type=bool, help="Make the enhancement run faster.")
     audio_enhancement.add_argument('enhancement_steps', type=bool, default=50, help="Choose the number of steps for enhancement")
+
+    # Visual question answering
+    visual_question_answering = subparsers.add_parser('visual_question_answering', help='Visual question answering with GPT-4 level capabilities.')
+    visual_question_answering.add_argument('image_url', type=str, help='Link to the image for visual input.')
+    visual_question_answering.add_argument('prompt', type=str, help='What to ask based on the visual input.')
+
     args = parser.parse_args()
 
     if args.command == 'chat':
@@ -81,6 +87,8 @@ def main():
     elif args.command == 'audio_enhancement':
         result = enhance_audio(args.audio_url, args.enhance_speed_boost, args.enhancement_steps)
         print(result)
+    elif args.command == 'visual_question_answering':
+        result = visual_question_answering(args.image_url, args.prompt)
     else:
         parser.print_help()
 

@@ -6,12 +6,13 @@ CLI tool that provides some useful and common interactions with state-of-the-art
 
 - **Translation (sieve/seamless_text2text)**: Translates text from a source language to a target language.
 - **Youtube Link Transcription (langchain/youtube_transcripts)**: Transcribes audio from a given URL.
-- **Detect Language**: Identifies the language of the given text.
-- **Text to Speech**: Converts text into spoken words.
-- **Translate and Talk**: Translates text from one language to another and then converts the translated text to speech.
-- **Youtube Video Download (MP4)**: Downloads a Youtube video in MP4 format given its URL.
+- **Detect Language (sieve)**: Identifies the language of the given text.
+- **Text to Speech (sieve)**: Converts text into spoken words.
+- **Translate and Talk (sieve)**: Translates text from one language to another and then converts the translated text to speech.
+- **Youtube Video Download (sieve)**: Downloads a Youtube video in MP4 format given its URL.
 - **Detect Language and Translate**: Detects the language of the text and translates it to a specified target language.
-- **Audio Enhancement**: Enhances the quality of an mp3 or wav file. 
+- **Audio Enhancement (sieve)**: Enhances the quality of an mp3 or wav file. 
+- **Visual question answering (sieve/llava-vl-13b)**: Visual question answering with GPT-4 level capabilities.
 
 ## Setup
 
@@ -33,5 +34,6 @@ The CLI provides the following commands:
 - `translate_and_talk`: Command for translating and converting text to speech. Requires text and target language arguments.
 - `youtube_download_mp4`: Command for downloading Youtube videos in MP4 format. Requires a URL argument.
 - `audio_enhancement`: Command for enhancing the quality of an mp3 or wav file. 
+- `visual question answer`: Command for visual question answering with GPT-4 level capabilities.
 
 Each command can be used by running `python main.py [command]` followed by the necessary arguments. For specific details on each command and its required arguments, use `python main.py [command] -h`.
