@@ -7,4 +7,9 @@ venv
 */downloads/*
 /downloads/
 downloads
+*.egg-info/
+*/dist/*
+dist/
+build/
+
 
