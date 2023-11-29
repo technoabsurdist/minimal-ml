@@ -1,9 +1,0 @@
-openai
-sieve
-langchain
-python-dotenv
-Flask
-requests
-numpy
-scipy
-librosa
