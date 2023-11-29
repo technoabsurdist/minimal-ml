@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='mltoolbox',
+    name='minimalml',
     version='0.1.1',
     author='Techno Absurdist',
     author_email='andere.emi@gmail.com',
