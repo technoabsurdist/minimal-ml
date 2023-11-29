@@ -10,6 +10,7 @@ downloads
 *.egg-info/
 */dist/*
 dist/
+*/dist
 build/
 
 
