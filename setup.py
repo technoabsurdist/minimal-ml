@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='ml_api',
+    name='common-ml-functions',
     version='0.1',
     author='Techno Absurdist',
     author_email='andere.emi@gmail.com',
@@ -32,5 +32,5 @@ setup(
     ],
     python_requires='>=3.6', # Minimum Python version your package supports
     include_package_data=True,
-    keywords='ml-api, language processing, youtube downloader, text-to-speech', # Add relevant keywords
+    keywords='common-ml-functions, language processing, youtube downloader, text-to-speech', # Add relevant keywords
 )
